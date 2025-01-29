@@ -1,0 +1,30 @@
+
+#body_top
+{
+    margin: 0px;
+    background-color: black;
+    color: yellow;
+}
+
+#top_all
+{
+    width: 100%;
+    height: 50px;
+}
+
+#esq
+{
+    width: 50%;
+    height: 50px;
+    float: left;
+    color: yellow;
+}
+
+#dir
+{
+    width: 50%;
+    height: 50px;
+    float: left;
+    text-align: right;
+    color: yellow;
+}
