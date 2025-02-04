@@ -1,6 +1,6 @@
         <hr>
         <div>
-            <p>sistema de login: desenvolvido por Fernando Costa Migliorini, entre 27/01/2025 e 28/01/2025.</p>
+            <p>Login: desenvolvido por Fernando Costa Migliorini, entre 27/01/2025 e 28/01/2025.</p>
         </div>
     </body>
 </html>

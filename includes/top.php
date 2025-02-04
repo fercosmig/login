@@ -20,7 +20,6 @@ require_once "./classes/classGrupo.php";
             <?php
                 if (isLogged())                    
                 {
-                    session_start();
                     $usuario = new Usuario();
                     $usuario = unserialize($_SESSION["usuario"]);
                 ?>

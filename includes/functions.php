@@ -1,9 +1,10 @@
 <?php
+session_start();
 
 function isLogged()
 {
     $retorno = false;
-    session_start();
+    
     if ($_SESSION["logado"])
     {
         $retorno = true;
@@ -41,5 +42,16 @@ function alerta($mensagem, $pagina)
     
     $str .= "</script>";
     echo $str;
+}
+
+function trata_str($str)
+{
+    $proibido = array ( "select", "delete", "insert", "update", "where",
+    "order", "desc", "inner", "join", "letf", "limit", "values",
+    "from", "asc", "'", "!", "=" );
+
+    $str = str_ireplace($proibido, "", $str);
+
+    return $str;
 }
 ?>
