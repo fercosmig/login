@@ -1,30 +1,62 @@
-
 #body_top
 {
-    margin: 0px;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-bottom: 0px;
+    margin-right: 0px;
     background-color: black;
     color: yellow;
 }
 
+a:link
+{
+    color: yellow;
+    text-decoration: underline;
+}
+
+a:visited
+{
+    color: yellow;
+    text-decoration: underline;
+}
+
+a:hover
+{
+    color: orange;
+    text-decoration: underline;
+}
+
+a:active
+{
+    color: yellow;
+    text-decoration: underline;
+}
+
 #top_all
 {
-    width: 100%;
-    height: 50px;
+    border-bottom-style: solid;
+    border-bottom-color: white;
+    border-bottom-width: 1px;
+    display: flex;
+    justify-content: space-between;
+    height: fit-content;
 }
 
 #esq
 {
-    width: 50%;
-    height: 50px;
-    float: left;
     color: yellow;
 }
 
 #dir
 {
-    width: 50%;
-    height: 50px;
-    float: left;
-    text-align: right;
     color: yellow;
+    padding-right: 10px;
+    padding-top: 50px;
+}
+
+#bottom
+{
+    border-top-style: solid;
+    border-top-color: white;
+    border-top-width: 1px;
 }

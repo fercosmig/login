@@ -14,7 +14,7 @@ require_once "./classes/classGrupo.php";
     <body id="body_top">
         <div id="top_all">
             <div id="esq">
-                <h2>Sistema de Login .:: FerCosMig ::.</h2>
+                <h2>.:: FerCosMig ::.</h2>
             </div>
             <div id="dir">
             <?php
@@ -22,19 +22,18 @@ require_once "./classes/classGrupo.php";
                 {
                     $usuario = new Usuario();
                     $usuario = unserialize($_SESSION["usuario"]);
-                ?>
-                <span><?= $usuario->get_nome() ?> | <?= $usuario->get_grupo()->get_nome() ?> | </span>
-                <span><a href="script_logout.php">Logout</a></span>
-                <?php
+            ?>
+                    <span><?= $usuario->get_nome() ?> | <?= $usuario->get_grupo()->get_nome() ?> | </span>
+                    <span><a href="script_logout.php">Logout</a></span>
+            <?php
                 }
                 else
                 {
                 ?>
-                <span>Você não está logado!</span>
+                    <span>Você não está logado!</span>
                 <?php
                 }
                 ?>
             </div>
         </div>
-        <hr>
 
