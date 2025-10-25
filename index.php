@@ -1,6 +1,16 @@
 <?php
 include "includes/top.php";
 
+?>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<?php
+
 if (isLogged())
 {
 ?>
@@ -10,6 +20,7 @@ if (isLogged())
 else
 {
 ?>
+
 <form id="form_login" method="post" action="script_login.php">
     <table>
         <tr>
@@ -36,8 +47,17 @@ else
         </tr>
     </table>
 </form>
+
 <?php
 }
+?>
 
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<?php
 include "includes/bottom.php";
 ?>
