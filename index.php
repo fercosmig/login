@@ -10,15 +10,11 @@ include "includes/top.php";
 <br>
 
 <?php
-
 if (isLogged())
 {
-?>
-    <span>Viva! você está logado no sistema! Faça Logout!</span>
-<?php
+    header("Location: home.php");
+    exit();
 }
-else
-{
 ?>
 
 <form id="form_login" method="post" action="script_login.php">
@@ -47,10 +43,6 @@ else
         </tr>
     </table>
 </form>
-
-<?php
-}
-?>
 
 <br>
 <br>
