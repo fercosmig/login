@@ -12,6 +12,15 @@ function isLogged()
     return $retorno;
 }
 
+function verifica_pagina()
+{
+    if(!isLogged())
+    {
+        header("Location: script_logout.php");
+        exit();
+    }
+}
+
 function conectaDB()
 {
     try
