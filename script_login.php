@@ -18,10 +18,12 @@ if ($usuario->get_nome() != "")
     $_SESSION["usuario"] = serialize($usuario);
     $_SESSION["id_usuario"] = $usuario->get_id();
     $_SESSION["logado"] = true;
-    alerta("Usuario logado!", "index.php");
+    //alerta("Usuario logado!", "index.php");
+    header("Location: home.php");
+    exit();
 }
 else
 {
-    alerta("Não consegue né Moisés!", "index.php");
+    alerta("Não consegue né Moisés!", "script_logout.php");
 }
 ?>

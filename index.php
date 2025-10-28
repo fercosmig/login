@@ -3,11 +3,7 @@ include "includes/top.php";
 
 ?>
 
-<br>
-<br>
-<br>
-<br>
-<br>
+<h2>Formulário de login do sistema</h2>
 
 <?php
 if (isLogged())
@@ -17,14 +13,14 @@ if (isLogged())
 }
 ?>
 
-<form id="form_login" method="post" action="script_login.php">
+<form id="form_login" method="post" onsubmit="return trata_campos_form(this.id);" action="script_login.php">
     <table>
         <tr>
             <td>
                 <span>E-mail:</span>
             </td>
             <td>
-                <input type="text" id="email" name="email" />
+                <input type="text" id="email" name="email" required autofocus>
             </td>
         </tr>
         <tr>
@@ -32,13 +28,13 @@ if (isLogged())
                 <span>Senha:</span>
             </td>
             <td>
-                <input type="password" id="senha" name="senha" />
+                <input type="password" id="senha" name="senha" required>
             </td>
         </tr>
         <tr>
             <td colspan="2">
-                <input type="submit" id="enviar" name="enviar" value="Enviar" />
-                <input type="reset" id="limpar" name="limpar" value="Limpar" />
+                <input type="submit" id="enviar" name="enviar" value="Enviar">
+                <input type="reset" id="limpar" name="limpar" value="Limpar">
             </td>
         </tr>
     </table>

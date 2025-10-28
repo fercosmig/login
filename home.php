@@ -1,7 +1,7 @@
 <?php
 include "includes/top.php";
 
-verifica_pagina();
+somente_logado();
 ?>
 
 <br>
