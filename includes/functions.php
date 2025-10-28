@@ -3,6 +3,10 @@ require_once "./classes/classUsuario.php";
 
 session_start();
 
+/*
+    Verifica se o usuário está logado.
+    Retorna TRUE se existir a session de usuário logado ou FALSE se não existir.
+*/
 function isLogged()
 {
     $retorno = false;
@@ -14,6 +18,11 @@ function isLogged()
     return $retorno;
 }
 
+/*
+    Verifica se o usuário é Administrador do sistema.
+    Utiliza os dados da session de usuário logado para verificar se o grupo é Administradores.
+    Retorna TRUE se for do grupo Administradores ou FALSE se for de qualquer outro grupo.
+*/
 function isAdm()
 {
     $retorno = false;
@@ -25,6 +34,10 @@ function isAdm()
     return $retorno;
 }
 
+/*
+    Obtem dados do usuário logado.
+    Retorna um objeto da classe Usuario com os dados obtidos na session de usuário logado.
+*/
 function usuario_logado()
 {
     $usuario = new Usuario();
@@ -32,6 +45,10 @@ function usuario_logado()
     return $usuario;
 }
 
+/*
+    Direciona para a página de logout caso o usuário não esteja logado.
+    Caso alguém tente usar o sistema utilizando uma url diretamente sem fazer login.
+*/
 function somente_logado()
 {
     if (!isLogged())
@@ -40,6 +57,10 @@ function somente_logado()
         exit();
     }
 }
+
+/*
+    Direciona para a página home caso o usuário tente utilizar via link uma página sem permissão.
+*/
 function somente_adm()
 {
     if (!isAdm())
@@ -49,6 +70,10 @@ function somente_adm()
     }
 }
 
+/*
+    Faz a conexão com o banco de dados.
+    Utilizada pelas classes DAO.
+*/
 function conectaDB()
 {
     try
@@ -67,6 +92,12 @@ function conectaDB()
     }
 }
 
+/*
+    Exibe mensagem de alerta e redireciona a página.
+    Recebe uma string com a mensagem e uma string com o nome da pagina de destino.
+    Se o nome da página estiver em branco, somente exibe a mensagem de alerta.
+    Caso o nome da página for "back", redireciona para window.history.back().
+*/
 function alerta($mensagem, $pagina)
 {
     $str = "<script language='javascript' type='text/javascript'>";
@@ -88,6 +119,12 @@ function alerta($mensagem, $pagina)
     echo $str;
 }
 
+/*
+    Recebe uma string.
+    Remove espaços em branco no início e no final da string recebida.
+    Remove palavras reservadas do SQL.
+    Retorna a string tratada.
+*/
 function trata_str($str)
 {
     $proibido = array ( "select", "delete", "insert", "update", "where",
@@ -100,6 +137,10 @@ function trata_str($str)
     return $str;
 }
 
+/*
+    Configura a página php para exibir os erros do servidor e de programação.
+    Recebe TRUE ou FALSE, para ligar ou não as mensagens de erro.
+*/
 function exibe_erros($valor)
 {
     if ($valor)

@@ -24,6 +24,7 @@ require_once "./classes/classGrupoDAO.php";
 ?>
                     <span><?= $usuario->get_nome() ?> | <?= $usuario->get_grupo()->get_nome() ?> | </span>
 <?php
+                    // Se for Administrador mostra links para manutenção de grupos e usuários.
                     if (isAdm())
                     {
 ?>
