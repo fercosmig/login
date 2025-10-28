@@ -8,15 +8,15 @@
     margin-left: 0px;
     margin-bottom: 0px;
     margin-right: 0px;
-    background-color: black;
-    color: yellow;
+    background-color: rgb(86, 2, 107);
+    color: rgb(214, 214, 210);
 }
 
 /*  Altera a cor do link.
     Usado em todas as páginas. */
 a:link
 {
-    color: yellow;
+    color: rgb(177, 177, 173);
     text-decoration: underline;
 }
 
@@ -24,7 +24,7 @@ a:link
     Usado em todas as páginas. */
 a:visited
 {
-    color: yellow;
+    color: rgb(177, 177, 173);
     text-decoration: underline;
 }
 
@@ -40,7 +40,7 @@ a:hover
     Usado em todas as páginas. */
 a:active
 {
-    color: yellow;
+    color: rgb(177, 177, 173);
     text-decoration: underline;
 }
 
@@ -61,7 +61,7 @@ a:active
     Arquivo top.php. */
 #esq
 {
-    color: yellow;
+    color: rgb(177, 177, 173);
 }
 
 /*  Div da direita, dentro da div #top_all.
@@ -69,7 +69,7 @@ a:active
     Arquivo top.php. */
 #dir
 {
-    color: yellow;
+    color: rgb(177, 177, 173);
     padding-right: 10px;
     padding-top: 50px;
 }
@@ -89,7 +89,7 @@ a:active
 .tabela
 {
     background-color: gray;
-    width: 70%;    
+    width: 75%;    
 }
 
 /*  Altera cor da linha e a fonte na linha de título da tabela.
@@ -107,7 +107,7 @@ a:active
 .celula_conteudo
 {
     background-color: black;
-    color: yellow;
+    color: rgb(177, 177, 173);
 }
 
 /*  Centraliza o conteúde de uma célula nas tabelas. */
@@ -116,9 +116,25 @@ a:active
     text-align: center;
 }
 
+/*  Espaco na bosda da tabela.
+    Utilizado em algumas tabelas. */
+.espaco
+{
+    padding: 15px;
+}
+
+
 /*  Altera o cursor dos elementos HTML do tipo img.
     Usado em todo o site. */
 img
 {
     cursor: pointer;
+}
+
+/*  Tamanho dos botões dos formulários.
+    Usado em todos os formulários. */
+input[type="submit"], input[type="reset"]
+{
+    width: 80px;
+    height: 30px;
 }
