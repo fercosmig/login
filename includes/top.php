@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <?php
 require_once "./includes/functions.php";
-require_once "./classes/classUsuario.php";
-require_once "./classes/classGrupo.php";
+require_once "./classes/classUsuarioDAO.php";
+require_once "./classes/classGrupoDAO.php";
 ?>
 
 <html>
@@ -17,23 +17,33 @@ require_once "./classes/classGrupo.php";
                 <h2>.:: FerCosMig ::.</h2>
             </div>
             <div id="dir">
-            <?php
+<?php
                 if (isLogged())                    
                 {
-                    $usuario = new Usuario();
-                    $usuario = unserialize($_SESSION["usuario"]);
-            ?>
+                    $usuario = usuario_logado();
+?>
                     <span><?= $usuario->get_nome() ?> | <?= $usuario->get_grupo()->get_nome() ?> | </span>
+<?php
+                    if (isAdm())
+                    {
+?>
+                        <span><a href="grupo_lista.php">Grupos</a>  | </span>
+                        <span><a href="usuario_lista.php">Usuarios</a> | </span>
+<?php
+                    }
+?>
+                    <span><a href="home.php">Home</a> | </span>
                     <span><a href="script_logout.php">Logout</a></span>
-            <?php
+            
+<?php
                 }
                 else
                 {
-                ?>
+?>
                     <span>Você não está logado!</span>
-                <?php
+<?php
                 }
-                ?>
+?>
             </div>
         </div>
 

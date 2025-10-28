@@ -61,3 +61,28 @@ a:active
     border-top-width: 1px;
     font-size: xx-small;
 }
+
+.tabela
+{
+    background-color: gray;
+    width: 70%;    
+}
+
+.linha_titulo
+{
+    background-color: gray;
+    color: black;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.celula_conteudo
+{
+    background-color: black;
+    color: yellow;
+}
+
+.centro
+{
+    text-align: center;
+}
