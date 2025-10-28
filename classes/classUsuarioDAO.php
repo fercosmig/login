@@ -7,14 +7,15 @@ class UsuarioDAO
 {
     public function login($usuario)
     {
-        $sql = "SELECT tb_users.id, tb_users.name, tb_users.email, tb_users.password, ";
-        $sql .= "tb_groups.id as group_id, tb_groups.name as group_name ";
-        $sql .= "FROM tb_users ";
-        $sql .= "INNER JOIN tb_groups ";
-        $sql .= "ON tb_users.id_group = tb_groups.id ";
-        $sql .= "WHERE tb_users.email = :email ";
-        $sql .= "AND tb_users.password = :senha;";
+        $sql = "SELECT tb_usuario.id, tb_usuario.nome, tb_usuario.email, tb_usuario.senha, ";
+        $sql .= "tb_grupo.id as grupo_id, tb_grupo.nome as grupo_nome ";
+        $sql .= "FROM tb_usuario ";
+        $sql .= "INNER JOIN tb_grupo ";
+        $sql .= "ON tb_usuario.id_grupo = tb_grupo.id ";
+        $sql .= "WHERE tb_usuario.email = :email ";
+        $sql .= "AND tb_usuario.senha = :senha;";
 
+        
         try
         {
             $pdo = conectaDB();
@@ -34,11 +35,14 @@ class UsuarioDAO
             if ($linha = $stmt->fetch(PDO::FETCH_ASSOC))
             {
                 $grupo = new Grupo();
-                $grupo->set_id($linha["group_id"]);
-                $grupo->set_nome($linha["group_name"]);
-    
-                $usuario->set_id($linha["id"]);
-                $usuario->set_nome($linha["name"]);
+                $grupo->set_id($linha["grupo_id"]);
+                $grupo->set_nome($linha["grupo_nome"]);
+                
+                $usuario = new Usuario();
+                $usuario->set_id($linha['id']);
+                $usuario->set_nome($linha['nome']);
+                $usuario->set_email($linha['email']);
+                $usuario->set_senha($linha['senha']);
                 $usuario->set_grupo($grupo);
             }
 
@@ -51,7 +55,7 @@ class UsuarioDAO
     public function insere($usuario)
     {
         $retorno = false;
-        $sql = "INSERT INTO tb_users (name, email, password, id_group) VALUES ";
+        $sql = "INSERT INTO tb_usuario (nome, email, senha, id_grupo) VALUES ";
         $sql .= "(:nome, :email, :senha, :id_grupo);";
 
         try
@@ -81,12 +85,12 @@ class UsuarioDAO
 
     public function lista_todos()
     {
-        $sql = "SELECT tb_users.id, tb_users.name, tb_users.email, tb_users.password, ";
-        $sql .= "tb_groups.id as group_id, tb_groups.name as group_name ";
-        $sql .= "FROM tb_users ";
-        $sql .= "INNER JOIN tb_groups ";
-        $sql .= "ON tb_users.id_group = tb_groups.id ";
-        $sql .= "ORDER BY tb_users.name ASC;";
+        $sql = "SELECT tb_usuario.id, tb_usuario.nome, tb_usuario.email, tb_usuario.senha, ";
+        $sql .= "tb_grupo.id as grupo_id, tb_grupo.nome as grupo_nome ";
+        $sql .= "FROM tb_usuario ";
+        $sql .= "INNER JOIN tb_grupo ";
+        $sql .= "ON tb_usuario.id_grupo = tb_grupo.id ";
+        $sql .= "ORDER BY tb_usuario.nome ASC;";
 
         try
         {
@@ -102,26 +106,45 @@ class UsuarioDAO
         }
         finally
         {
+            //$linhas = $stmt->fetchAll(PDO::FETCH_CLASS, "Usuario");
             $linhas = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $pdo = null;
             $stmt = null;
-        }         
-        return $linhas;
+
+            $resultado = array();
+            foreach ($linhas as $linha)
+            {
+                $grupo = new Grupo();
+                $grupo->set_id($linha['grupo_id']);
+                $grupo->set_nome($linha['grupo_nome']);
+
+                $usuario = new Usuario();
+                $usuario->set_id($linha['id']);
+                $usuario->set_nome($linha['nome']);
+                $usuario->set_email($linha['email']);
+                $usuario->set_senha($linha['senha']);
+                $usuario->set_grupo($grupo);
+
+                array_push($resultado, $usuario);
+            }
+        }
+        //return $linhas;
+        return $resultado;
     }
     
     public function registro_por_id($id_usuario)
     {
-        $sql = "SELECT tb_users.id, tb_users.name, tb_users.email, tb_users.password, ";
-        $sql .= "tb_groups.id as group_id, tb_groups.name as group_name ";
-        $sql .= "FROM tb_users ";
-        $sql .= "INNER JOIN tb_groups ";
-        $sql .= "ON tb_users.id_group = tb_groups.id ";
-        $sql .= "WHERE tb_users.id = :id;";
-
+        $sql = "SELECT tb_usuario.id, tb_usuario.nome, tb_usuario.email, tb_usuario.senha, ";
+        $sql .= "tb_grupo.id as grupo_id, tb_grupo.nome as grupo_nome ";
+        $sql .= "FROM tb_usuario ";
+        $sql .= "INNER JOIN tb_grupo ";
+        $sql .= "ON tb_usuario.id_grupo = tb_grupo.id ";
+        $sql .= "WHERE tb_usuario.id = :id;";
+        
         try
         {
             $pdo = conectaDB();
-
+            
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(":id", $id_usuario, PDO::PARAM_INT);
             $stmt->execute();
@@ -134,18 +157,29 @@ class UsuarioDAO
         finally
         {
             $linha = $stmt->fetch(PDO::FETCH_ASSOC);
-
+            
             $pdo = null;
             $stmt = null;
-        }         
-        return $linha;
+            
+            $grupo = new Grupo();
+            $grupo->set_id($linha['grupo_id']);
+            $grupo->set_nome($linha['grupo_nome']);
+            
+            $usuario = new Usuario();
+            $usuario->set_id($linha['id']);
+            $usuario->set_nome($linha['nome']);
+            $usuario->set_email($linha['email']);
+            $usuario->set_senha($linha['senha']);
+            $usuario->set_grupo($grupo);
+        }
+        return $usuario;
     }
-    
+
     public function altera($usuario)
     {
         $retorno = false;
-        $sql = "UPDATE tb_users SET name = :nome, email = :email, ";
-        $sql .= "password = :senha, id_group = :id_grupo WHERE id = :id;";
+        $sql = "UPDATE tb_usuario SET nome = :nome, email = :email, ";
+        $sql .= "senha = :senha, id_grupo = :id_grupo WHERE id = :id;";
 
         try
         {
@@ -175,9 +209,9 @@ class UsuarioDAO
 
     public function exclui($id_usuario)
     {
-        $retorno = false;
-        $sql = "DELETE FROM tb_users WHERE id = :id;";
+        $sql = "DELETE FROM tb_usuario WHERE id = :id;";
 
+        $retorno = false;
         try
         {
             $pdo = conectaDB();
@@ -194,6 +228,42 @@ class UsuarioDAO
         }
         finally
         {
+            $pdo = null;
+            $stmt = null;
+        }
+        return $retorno;
+    }
+
+    public function email_ja_existe($email_usuario)
+    {
+        $sql = "SELECT tb_usuario.id, tb_usuario.nome, tb_usuario.email, tb_usuario.senha, ";
+        $sql .= "tb_grupo.id as grupo_id, tb_grupo.nome as grupo_nome ";
+        $sql .= "FROM tb_usuario ";
+        $sql .= "INNER JOIN tb_grupo ";
+        $sql .= "ON tb_usuario.id_grupo = tb_grupo.id ";
+        $sql .= "WHERE tb_usuario.email = :email;";
+        
+        $retorno = false;
+        try
+        {
+            $pdo = conectaDB();
+            
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(":email", $email_usuario, PDO::PARAM_STR);
+            $stmt->execute();
+        }
+        catch(PDOException $e)
+        {
+            alerta("Erro:" . $e->getMessage(), "");
+            exit;
+        }
+        finally
+        {
+            if ($linha = $stmt->fetch(PDO::FETCH_ASSOC))
+            {
+                $retorno = true;
+            }
+            
             $pdo = null;
             $stmt = null;
         }
