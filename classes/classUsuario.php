@@ -1,4 +1,15 @@
 <?php
+
+/*
+    Tabela : tb_usuario
+    Campos:
+        id          => integer, primary key, not null, unique, autoincrement
+        nome        => text, not null
+        email       => text, not null, unique
+        senha       => text, not null
+        id_grupo    => integer, not null, foreign key (tb_grupo.id), delete cascade
+
+*/
 class Usuario
 {
     private $id;

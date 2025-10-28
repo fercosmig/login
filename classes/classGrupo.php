@@ -1,6 +1,14 @@
 <?php
+
+/*
+    Tabela: tb_grupo
+    Campos:
+        id      => integer, primary key, not null, unique, autoincrement
+        nome    => text, not null, unique
+*/
 class Grupo
 {
+    
     private $id;
     private $nome;
 

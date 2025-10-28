@@ -4,6 +4,9 @@ require_once "./classes/classGrupo.php";
 
 class GrupoDAO
 {
+    // Insere novo grupo na tabela.
+    // Recebe um objeto da classe Grupo.
+    // Retorna TRUE se der certo ou FALSE se der erro.
     public function insere($grupo)
     {
         $retorno = false;
@@ -31,9 +34,11 @@ class GrupoDAO
         return $retorno;
     }
 
+    // Lista todos os grupos cadastrados na tabela.
+    // Retorna um array de objetos da classe Grupo.
     public function lista_todos()
     {
-        $sql = "SELECT id, nome FROM tb_grupo;";
+        $sql = "SELECT id, nome FROM tb_grupo ORDER BY nome ASC;";
 
         try
         {
@@ -57,6 +62,9 @@ class GrupoDAO
         return $linhas;            
     }
     
+    // Busca um grupo específico por id.
+    // Recebe um integer com o id do grupo.
+    // Retorna um objeto da classe Grupo.
     public function registro_por_id($id_grupo)
     {
         $sql = "SELECT id, nome FROM tb_grupo WHERE id = :id;";
@@ -76,14 +84,20 @@ class GrupoDAO
         }
         finally
         {
-            $linha = $stmt->fetch(PDO::FETCH_CLASS, 'Grupo');
+            $linha = $stmt->fetch(PDO::FETCH_ASSOC);
+            $grupo = new Grupo();
+            $grupo->set_id($linha['id']);
+            $grupo->set_nome($linha['nome']);
 
             $pdo = null;
             $stmt = null;
-        }         
-        return $linha;
+        } 
+        return $grupo;
     }
-    
+
+    // Altera os dados de um grupo.
+    // Recebe um objeto da classe Grupo.
+    // Retorna TRUE se der certo ou FALSE se der erro.
     public function altera($grupo)
     {
         $retorno = false;
@@ -112,6 +126,9 @@ class GrupoDAO
         return $retorno;
     }
 
+    // Exclui um grupo da tabela.
+    // Recebe um integer com o id do grupo.
+    // Retorna TRUE se der certo ou FALSE se der erro.
     public function exclui($id_grupo)
     {
         $retorno = false;
@@ -139,7 +156,10 @@ class GrupoDAO
         return $retorno;
     }
 
-        public function nome_ja_existe($nome_grupo)
+    // Verifica se nome do grupo já existe na tabela.
+    // Recebe uma string com o nome do grupo.
+    // Retorna TRUE caso já exista ou FALSE se não for encontrado.
+    public function nome_ja_existe($nome_grupo)
     {
         $sql = "SELECT id, nome FROM tb_grupo WHERE nome = :nome;";
 

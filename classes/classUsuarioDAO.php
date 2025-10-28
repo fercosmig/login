@@ -5,6 +5,9 @@ require_once "./classes/classUsuario.php";
 
 class UsuarioDAO
 {
+    // Verifica os dados de login do usuario.
+    // Recebe um objeto da classe Usuario com email e senha.
+    // Retorna um objeto da classe Usuario.
     public function login($usuario)
     {
         $sql = "SELECT tb_usuario.id, tb_usuario.nome, tb_usuario.email, tb_usuario.senha, ";
@@ -14,7 +17,6 @@ class UsuarioDAO
         $sql .= "ON tb_usuario.id_grupo = tb_grupo.id ";
         $sql .= "WHERE tb_usuario.email = :email ";
         $sql .= "AND tb_usuario.senha = :senha;";
-
         
         try
         {
@@ -52,6 +54,9 @@ class UsuarioDAO
         return $usuario;
     }
 
+    // Insere um novo usuario na tabela.
+    // Recebe um objeto da classe Usuario.
+    // Retorna TRUE se der certo e FALSE se der erro.
     public function insere($usuario)
     {
         $retorno = false;
@@ -83,6 +88,8 @@ class UsuarioDAO
         return $retorno;
     }
 
+    // Lista todos os usuários cadastrados na tabela.
+    // Retorna um array de objetos da classe Usuario.
     public function lista_todos()
     {
         $sql = "SELECT tb_usuario.id, tb_usuario.nome, tb_usuario.email, tb_usuario.senha, ";
@@ -106,7 +113,6 @@ class UsuarioDAO
         }
         finally
         {
-            //$linhas = $stmt->fetchAll(PDO::FETCH_CLASS, "Usuario");
             $linhas = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $pdo = null;
             $stmt = null;
@@ -128,10 +134,12 @@ class UsuarioDAO
                 array_push($resultado, $usuario);
             }
         }
-        //return $linhas;
         return $resultado;
     }
-    
+
+    // Busca um usuário específico por id.
+    // Recebe um integer com o id do usuário.
+    // Retorna um objeto da classe Usuario.
     public function registro_por_id($id_usuario)
     {
         $sql = "SELECT tb_usuario.id, tb_usuario.nome, tb_usuario.email, tb_usuario.senha, ";
@@ -175,6 +183,9 @@ class UsuarioDAO
         return $usuario;
     }
 
+    // Altera os dados de um usuário.
+    // Recebe um objeto da classe Usuario.
+    // Retorna TRUE se der certo ou FALSE se der erro.
     public function altera($usuario)
     {
         $retorno = false;
@@ -207,6 +218,9 @@ class UsuarioDAO
         return $retorno;
     }
 
+    // Exclui um usuário da tabela.
+    // Recebe um integer com o id do usuário.
+    // Retorna TRUE se der certo ou FALSE se der erro.
     public function exclui($id_usuario)
     {
         $sql = "DELETE FROM tb_usuario WHERE id = :id;";
@@ -234,6 +248,9 @@ class UsuarioDAO
         return $retorno;
     }
 
+    // Verifica se email do usuário já existe na tabela.
+    // Recebe uma string com o email do usuário.
+    // Retorna TRUE caso já exista ou FALSE se não for encontrado.
     public function email_ja_existe($email_usuario)
     {
         $sql = "SELECT tb_usuario.id, tb_usuario.nome, tb_usuario.email, tb_usuario.senha, ";
