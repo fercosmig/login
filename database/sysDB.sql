@@ -1,26 +1,28 @@
-CREATE DATABASE sysDB.db; 
+/* CREATE DATABASE sysDB.db; */
 
-CREATE TABLE "tb_groups" (
-	"id"	INTEGER,
-	"name"	TEXT NOT NULL UNIQUE,
+DROP TABLE IF EXISTS tb_grupo;
+CREATE TABLE "tb_grupo" (
+	"id"	INTEGER NOT NULL UNIQUE,
+	"nome"	TEXT NOT NULL UNIQUE,
 	PRIMARY KEY("id" AUTOINCREMENT)
 );
 
-INSERT INTO tb_groups (name) VALUES ("Usuarios"), ("Administradores");
+INSERT INTO tb_grupo (nome) VALUES ("Usuários"), ("Administradores");
 
-CREATE TABLE "tb_users" (
-	"id"	INTEGER,
-	"name"	TEXT NOT NULL,
+DROP TABLE IF EXISTS tb_usuario;
+CREATE TABLE "tb_usuario" (
+	"id"	INTEGER NOT NULL UNIQUE,
+	"nome"	TEXT NOT NULL,
 	"email"	TEXT NOT NULL UNIQUE,
-	"password"	TEXT NOT NULL,
-	"id_group"	INTEGER NOT NULL,
-	FOREIGN KEY("id_group") REFERENCES "tb_groups"("id") ON DELETE CASCADE,
-	PRIMARY KEY("id" AUTOINCREMENT)
+	"senha"	TEXT NOT NULL,
+	"id_grupo"	INTEGER NOT NULL,
+	PRIMARY KEY("id" AUTOINCREMENT),
+	FOREIGN KEY("id_grupo") REFERENCES "tb_grupo"("id") ON DELETE CASCADE
 );
 
-INSERT INTO tb_users (name, email, password, id_group) VALUES
-("User Test", "user@user.com", "1234", 1),
-("Adm Test", "adm@adm.com", "1234", 2),
+INSERT INTO tb_usuario (nome, email, senha, id_grupo) VALUES
+("Usuário Teste", "user@user.com", "1234", 1),
+("Administrador Teste", "adm@adm.com", "1234", 2),
 ("Fernando Costa Migliorini", "fercosmig@gmail.com", "1234", 2);
 
 
