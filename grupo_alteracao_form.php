@@ -20,35 +20,31 @@ $grupo = $grupoDAO->registro_por_id($id_grupo);
 ?>
 
 <form id="form_alteracao" method="post" onsubmit="return trata_campos_form(this.id);" action="grupo_alteracao_script.php">
-    <table>
+    <table class="tabela">
         <tr>
-            <td>
+            <td class="celula_conteudo espaco">
                 <span>Id:</span>
             </td>
-            <td>
-                <input type="text" id="id" name="id" readonly value="<?= $grupo->get_id(); ?>">
+            <td class="celula_conteudo espaco">
+                <input type="text" id="id" name="id" readonly value="<?= $grupo->get_id(); ?>" size="10">
             </td>
-            <td>
+            <td class="celula_conteudo espaco">
                 <span>Nome:</span>
             </td>
-            <td>
-                <input type="text" id="nome" name="nome" required autofocus value="<?= $grupo->get_nome(); ?>">
+            <td class="celula_conteudo espaco">
+                <input type="text" id="nome" name="nome" required autofocus value="<?= $grupo->get_nome(); ?>" size="50">
             </td>
-            <td>
+            <td class="celula_conteudo espaco">
                 <input type="submit" id="salvar" name="salvar" value="Salvar">
             </td>
-            <td>
-                <input type="reset" id="limpar" name="limpar" value="Limpar">
+            <td class="celula_conteudo espaco">
+                <a href="grupo_lista.php">
+                    <img src="./images/voltar.png" width="30px" height="30px" alt="Voltar / Cancelar">
+                </a>
             </td>
         </tr>
     </table>
 </form>
-
-<br>
-<br>
-<br>
-
-<a href="grupo_lista.php">Voltar / Cancelar</a>
 
 <br>
 <br>

@@ -14,25 +14,25 @@ if (isLogged())
 ?>
 
 <form id="form_login" method="post" onsubmit="return trata_campos_form(this.id);" action="script_login.php">
-    <table>
+    <table class="tabela">
         <tr>
-            <td>
+            <td class="celula_conteudo espaco">
                 <span>E-mail:</span>
             </td>
-            <td>
-                <input type="text" id="email" name="email" required autofocus>
+            <td class="celula_conteudo espaco">
+                <input type="text" id="email" name="email" required autofocus size="50">
             </td>
         </tr>
         <tr>
-            <td>
+            <td class="celula_conteudo espaco">
                 <span>Senha:</span>
             </td>
-            <td>
-                <input type="password" id="senha" name="senha" required>
+            <td class="celula_conteudo espaco">
+                <input type="password" id="senha" name="senha" required size="50">
             </td>
         </tr>
         <tr>
-            <td colspan="2">
+            <td class="celula_conteudo espaco" colspan="2">
                 <input type="submit" id="enviar" name="enviar" value="Enviar">
                 <input type="reset" id="limpar" name="limpar" value="Limpar">
             </td>
