@@ -2,7 +2,7 @@
 require_once "./includes/functions.php";
 require_once "./classes/classGrupoDAO.php";
 
-exibe_erros(true);
+exibe_erros(false);
 somente_logado();
 somente_adm();
 
@@ -13,6 +13,7 @@ $grupoDAO = new GrupoDAO();
 
 $grupo->set_nome($nome_grupo);
 
+// Verifica se já existe grupo com o mesmo nome.
 if ($grupoDAO->nome_ja_existe($grupo->get_nome()))
 {
     alerta("Nome de grupo duplicado!", "back");

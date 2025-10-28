@@ -8,6 +8,7 @@ somente_adm();
 
 $id_grupo = trata_str($_GET["id"]);
 
+// Os grupos "Usuários" e "Administradores" não podem ser excluídos.
 if ($id_grupo <= 2)
 {
     alerta("Este grupo não pode ser excluído!", "grupo_lista.php");

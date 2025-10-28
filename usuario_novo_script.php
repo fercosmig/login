@@ -17,6 +17,7 @@ $usuario->set_grupo($grupo);
 
 $usuarioDAO = new UsuarioDAO();
 
+// Verifica se o e-mail já existe na tabela.
 if ($usuarioDAO->email_ja_existe($usuario->get_email()))
 {
     alerta("Usuário duplicado!", "back");

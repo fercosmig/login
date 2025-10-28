@@ -28,6 +28,7 @@ somente_adm();
             <td class="celula_conteudo centro"><?= $grupo->get_id(); ?></td>
             <td class="celula_conteudo"><?= $grupo->get_nome(); ?></td>
 <?php
+        // Os grupos "Usuários" e "Administradores" não exibem botão para alterar e excluir.
         if ($grupo->get_id() > 2)
         {
 ?>

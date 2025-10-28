@@ -34,6 +34,8 @@ somente_adm();
             <td class="celula_conteudo"><?= $usuario->get_grupo()->get_nome(); ?></td>
 
 <?php
+        // Os usuários "adm@adm.com", "usuario@usuario.com" e "fercosmig@gmail.com"
+        // não exibem os botões de alterar e excluir.
         if ($usuario->get_id() > 3)
         {
 ?>
