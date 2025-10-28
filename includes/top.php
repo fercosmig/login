@@ -8,8 +8,8 @@ require_once "./classes/classGrupoDAO.php";
 <html>
     <head>
         <title>Login</title>
-        <link rel="stylesheet" type="text/css" href="./includes/acesso.css" media="screen" />
-        <script src="./includes/acesso.js"></script>
+        <link rel="stylesheet" type="text/css" href="./includes/cascading_style_sheets.css" media="screen" />
+        <script src="./includes/javascript.js"></script>
     </head>
     <body id="body_top">
         <div id="top_all">

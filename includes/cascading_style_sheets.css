@@ -1,0 +1,140 @@
+/*  Remove as margens da página.
+    Altera a cor de fundo.
+    Altera a cor da fonte.
+    Usada em todas as páginas. */
+#body_top
+{
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-bottom: 0px;
+    margin-right: 0px;
+    background-color: rgb(86, 2, 107);
+    color: rgb(214, 214, 210);
+}
+
+/*  Altera a cor do link.
+    Usado em todas as páginas. */
+a:link
+{
+    color: rgb(177, 177, 173);
+    text-decoration: underline;
+}
+
+/*  Altera a cor do link visitado.
+    Usado em todas as páginas. */
+a:visited
+{
+    color: rgb(177, 177, 173);
+    text-decoration: underline;
+}
+
+/*  Altera a cor do link ao passar o mouse por cima.
+    Usado em todas as páginas. */
+a:hover
+{
+    color: orange;
+    text-decoration: underline;
+}
+
+/*  Altera a cor do link ativo.
+    Usado em todas as páginas. */
+a:active
+{
+    color: rgb(177, 177, 173);
+    text-decoration: underline;
+}
+
+/*  Div mãe do topo da página.
+    Arquivo top.php. */
+#top_all
+{
+    border-bottom-style: solid;
+    border-bottom-color: white;
+    border-bottom-width: 1px;
+    display: flex;
+    justify-content: space-between;
+    height: fit-content;
+}
+
+/*  Div da esquerda, dentro da div #top_all.
+    Contem o nome da pagina.
+    Arquivo top.php. */
+#esq
+{
+    color: rgb(177, 177, 173);
+}
+
+/*  Div da direita, dentro da div #top_all.
+    Contem os links: home, logout...
+    Arquivo top.php. */
+#dir
+{
+    color: rgb(177, 177, 173);
+    padding-right: 10px;
+    padding-top: 50px;
+}
+
+/*  Div do rodapé da página.
+    Arquivo botton.php. */
+#bottom
+{
+    border-top-style: solid;
+    border-top-color: white;
+    border-top-width: 1px;
+    font-size: xx-small;
+}
+
+/*  Altera cor de fundo das tabelas.
+    Usado em todas as tabelas. */
+.tabela
+{
+    background-color: gray;
+    width: 75%;    
+}
+
+/*  Altera cor da linha e a fonte na linha de título da tabela.
+    Usado em todas as tabelas. */
+.linha_titulo
+{
+    background-color: gray;
+    color: black;
+    font-weight: bolder;
+    text-align: center;
+}
+
+/*  Altera a cor de fundo das celulas e a fonte.
+    Usado em todas as tabelas. */
+.celula_conteudo
+{
+    background-color: black;
+    color: rgb(177, 177, 173);
+}
+
+/*  Centraliza o conteúde de uma célula nas tabelas. */
+.centro
+{
+    text-align: center;
+}
+
+/*  Espaco na bosda da tabela.
+    Utilizado em algumas tabelas. */
+.espaco
+{
+    padding: 15px;
+}
+
+
+/*  Altera o cursor dos elementos HTML do tipo img.
+    Usado em todo o site. */
+img
+{
+    cursor: pointer;
+}
+
+/*  Tamanho dos botões dos formulários.
+    Usado em todos os formulários. */
+input[type="submit"], input[type="reset"]
+{
+    width: 80px;
+    height: 30px;
+}
