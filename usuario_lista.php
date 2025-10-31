@@ -5,64 +5,60 @@ exibe_erros(true);
 somente_logado();
 somente_adm();
 
+$usuarioDAO = new UsuarioDAO();
+$lista_usuarios = $usuarioDAO->lista_todos();
 ?>
-
+ <br><br>
 <h2>Lista de usuários do sistema</h2>
+<br><br>
 
-<a href="usuario_novo_form.php"><img src="./images/add.png" width="24px" height="24px" alt="Novo usuario"></a>
-<table class="tabela">
-    <tr class="linha_titulo">
-        <td>ID</td>
-        <td>NOME</td>
-        <td>EMAIL</td>
-        <td>GRUPO</td>
-        <td></td>
-        <td></td>
-    </tr>
+<input type="button" onclick="direciona('home.php');" value="Voltar">
+<input type="button" onclick="direciona('usuario_novo_form.php');" value="Novo usuário">
+
+<div class="tabela">
 
 <?php
-    $usuarioDAO = new UsuarioDAO();
-    $lista_usuarios = $usuarioDAO->lista_todos();
-    //var_dump($lista_usuarios);
-    foreach($lista_usuarios as $usuario)
+foreach($lista_usuarios as $usuario)
+{
+?>
+    <div class="linha">
+        <div>
+            <table>
+                <tr>
+                    <td style="width: 50px"><span class="rot">Id:</span></td>
+                    <td style="width: 200px"><span class="val"><?= $usuario->get_id(); ?></span></td>
+                    <td style="width: 50px"><span class="rot">Nome:</span></td>
+                    <td style="width: 300px"><span class="val"><?= $usuario->get_nome(); ?></span></td>
+                </tr>
+                <tr>
+                    <td style="width: 50px"><span class="rot">E-mail:</span></td>
+                    <td style="width: 200px"><span class="val"><?= $usuario->get_email(); ?></span></td>
+                    <td style="width: 50px"><span class="rot">Grupo:</span></td>
+                    <td style="width: 300px"><span class="val"><?= $usuario->get_grupo()->get_nome(); ?></span></td>
+                </tr>
+            </table>
+        </div>
+        <div>
+<?php
+    if ($usuario->get_id() > 3)
     {
-?>
-        <tr>
-            <td class="celula_conteudo centro"><?= $usuario->get_id(); ?></td>
-            <td class="celula_conteudo"><?= $usuario->get_nome(); ?></td>
-            <td class="celula_conteudo"><?= $usuario->get_email(); ?></td>
-            <td class="celula_conteudo"><?= $usuario->get_grupo()->get_nome(); ?></td>
-
+?>            
+            <input type="button" onclick="envia('usuario', 'alterar', <?= $usuario->get_id(); ?>);" value="Alterar">
+            <input type="button" onclick="envia('usuario', 'excluir', <?= $usuario->get_id(); ?>);" value="Excluir">
 <?php
-        // Os usuários "adm@adm.com", "usuario@usuario.com" e "fercosmig@gmail.com"
-        // não exibem os botões de alterar e excluir.
-        if ($usuario->get_id() > 3)
-        {
-?>
-            <td class="celula_conteudo centro"><img src="./images/change.png" width="24px" height="24px" alt="Alterar usuario" onclick="envia('usuario', 'alterar', <?= $usuario->get_id(); ?>);"></td>
-            <td class="celula_conteudo centro"><img src="./images/delete.png" width="24px" height="24px" alt="Excluir usuario" onclick="envia('usuario', 'excluir', <?= $usuario->get_id(); ?>);"></td>
-<?php
-        }
-        else
-        {
-?>
-            <td class="celula_conteudo centro"><img src="./images/proibido.png" width="24px" height="24px" alt="Alterar usuario"></td>
-            <td class="celula_conteudo centro"><img src="./images/proibido.png" width="24px" height="24px" alt="Excluir usuario"></td>
-<?php
-        }
-?>
-       </tr>
-<?php        
     }
 ?>
-</table>
+        </div>
+    </div>
+<?php
+}
+?>
+</div>
 
-<br>
-<br>
-<br>
-<br>
-<br>
+<input type="button" onclick="direciona('home.php');" value="Voltar">
+<input type="button" onclick="direciona('usuario_novo_form.php');" value="Novo usuário">
 
+<br><br><br><br><br>
 <?php
 include "includes/bottom.php";
 ?>

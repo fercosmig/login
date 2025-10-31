@@ -8,47 +8,50 @@ somente_adm();
 
 <h2>Lista de grupos de segurança</h2>
 
-<a href="grupo_novo_form.php"><img src="./images/add.png" width="24px" height="24px" alt="Novo grupo" /></a>
-
-<table class="tabela">
-    <tr class="linha_titulo">
-        <td>ID</td>
-        <td>NOME</td>
-        <td></td>
-        <td></td>
-    </tr>
+<input type="button" onclick="direciona('home.php');" value="Voltar">
+<input type="button" onclick="direciona('grupo_novo_form.php');" value="Novo grupo">
 
 <?php
-    $grupoDAO = new GrupoDAO();
-    $lista_grupos = $grupoDAO->lista_todos();
-    foreach($lista_grupos as $grupo)
+$grupoDAO = new GrupoDAO();
+$lista_grupos = $grupoDAO->lista_todos();
+?>
+
+<div class="tabela">
+<?php
+foreach($lista_grupos as $grupo)
+{
+?>
+    <div class="linha">
+        <div>
+            <table>
+                <tr>
+                    <td style="width: 10px"><span class="rot">Id:</span></td>
+                    <td style="width: 20px"><span class="val"><?= $grupo->get_id(); ?></span></td>
+                    <td style="width: 10px;"></td>
+                    <td style="width: 50px"><span class="rot">Nome:</span></td>
+                    <td><span class="val"><?= $grupo->get_nome(); ?></span></td>
+                </tr>
+            </table>           
+        </div>
+        <div>
+<?php
+    if ($grupo->get_id() > 2)
     {
 ?>
-        <tr>
-            <td class="celula_conteudo centro"><?= $grupo->get_id(); ?></td>
-            <td class="celula_conteudo"><?= $grupo->get_nome(); ?></td>
-<?php
-        // Os grupos "Usuários" e "Administradores" não exibem botão para alterar e excluir.
-        if ($grupo->get_id() > 2)
-        {
-?>
-            <td class="celula_conteudo centro"><img src="./images/change.png" width="24px" height="24px" alt="Alterar grupo" onclick="envia('grupo', 'alterar', <?= $grupo->get_id(); ?>);"></td>
-            <td class="celula_conteudo centro"><img src="./images/delete.png" width="24px" height="24px" alt="Excluir grupo" onclick="envia('grupo', 'excluir', <?= $grupo->get_id(); ?>);"></td>
-<?php
-        }
-        else
-        {
-?>
-            <td class="celula_conteudo centro"><img src="./images/proibido.png" width="24px" height="24px" alt="Alterar grupo"></td>
-            <td class="celula_conteudo centro"><img src="./images/proibido.png" width="24px" height="24px" alt="Excluir grupo"></td>
-<?php
-        }
-?>
-       </tr>
-<?php        
+            <input type="button" onclick="envia('grupo', 'alterar', <?= $grupo->get_id(); ?>);" value="Alterar">
+            <input type="button" onclick="envia('grupo', 'excluir', <?= $grupo->get_id(); ?>);" value="Excluir">
+<?php            
     }
 ?>
-</table>
+        </div>
+    </div>   
+<?php
+}
+?>
+</div>
+
+<input type="button" onclick="direciona('home.php');" value="Voltar">
+<input type="button" onclick="direciona('grupo_novo_form.php');" value="Novo grupo">
 
 <br>
 <br>
