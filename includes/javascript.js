@@ -27,6 +27,11 @@ function envia(objeto, acao, id)
   }
 }
 
+function direciona(pagina)
+{
+    window.location.href= pagina;
+}
+
 /*
 Recebe o id do formulário.
 Percorre todos os elementos do formulario.
@@ -44,13 +49,17 @@ function trata_campos_form(form_id)
         elemento = form.elements[i];
         tipo = elemento.type;
         
-        if (tipo == 'text' || tipo == 'password'){
-            valor = elemento.value;
-            valor = valor.trim();
-            if (valor == '')
+        if (tipo == 'text' || tipo == 'password')
+        {
+            if (elemento.required)
             {
-                alert('campo ' + elemento.name + ' não pode ser vazio.');
-                retorno = false;
+                valor = elemento.value;
+                valor = valor.trim();
+                if (valor == '')
+                {
+                    alert('campo ' + elemento.name + ' não pode ser vazio.');
+                    retorno = false;
+                }
             }
         }
     }
@@ -82,4 +91,18 @@ function verifica_senha(form_id)
         alert('Os campos senha e repetir senha devem ser iguais!');
     }
     return retorno;
+}
+
+
+/*  AJAX
+    Recebe o script a executar e o local que o mesmo será inserido. */
+function loadDoc(destino, local)
+{
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function()
+    {
+        document.getElementById(local).innerHTML = this.responseText;
+    }
+    xhttp.open("GET", destino, true);
+    xhttp.send();
 }

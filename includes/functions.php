@@ -78,8 +78,10 @@ function conectaDB()
 {
     try
     {    
-        $pdo = new PDO("sqlite:./database/sysDB.db","","");
-        $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+        $dsn = "sqlite:./database/sysDB.db";
+        $usuario = "";
+        $senha = "";
+        $pdo = new PDO($dsn, $usuario, $senha);
     }
     catch (PDOException $e)
     {
