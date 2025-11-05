@@ -16,11 +16,11 @@ if (isLogged())
         <div class="linha">
             <table>
                 <tr>
-                    <td>Digite seu e-mail:</td>
+                    <td><label for="email">Digite seu e-mail:</label></td>
                     <td><input type="text" id="email" name="email" required autofocus class="t400"></td>
                 </tr>
                 <tr>
-                    <td>Digite sua senha:</td>
+                    <td><label for="senha">Digite sua senha:</label></td>
                     <td><input type="password" id="senha" name="senha" required class="t400"></td>
                 </tr>
                 <tr>

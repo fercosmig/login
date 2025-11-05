@@ -17,7 +17,7 @@ somente_adm();
     <div class="tabela">
         <div class="linha">
             <div>
-                <span class="rot">Nome do grupo:</span>
+                <label for="nome" class="rot">Nome do grupo:</label>
                 <input type="text" id="nome" name="nome" required autofocus class="t400">
             </div>
             <div>

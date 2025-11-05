@@ -26,23 +26,23 @@ $lista_grupos = $grupoDAO->lista_todos();
         <div class="linha">
             <table>
                 <tr>
-                    <td><span class="rot">Id:</span></td>
+                    <td><label for="id" class="rot">Id:</label></td>
                     <td><input type="text" id="id" name="id" value="<?= $usuario->get_id(); ?>" readonly class="t25"></td>
                 </tr>
                 <tr>
-                    <td><span class="rot">Nome:</span></td>
+                    <td><label for="nome" class="rot">Nome:</label></td>
                     <td><input type="text" id="nome" name="nome" value="<?= $usuario->get_nome(); ?>" required autofocus class="t400"></td>
                 </tr>
                 <tr>
-                    <td><span class="rot">E-mail:</span></td>
+                    <td><label for="email" class="rot">E-mail:</label></td>
                     <td><input type="text" id="email" name="email" value="<?= $usuario->get_email(); ?>" readonly class="t400"></td>
                 </tr>
                 <tr>
-                    <td><span class="rot">Senha:</span></td>
+                    <td><label for="senha" class="rot">Senha:</label></td>
                     <td><input type="password" id="senha" name="senha" value="<?= $usuario->get_senha(); ?>"  readonly class="t400"></td>
                 </tr>
                 <tr>
-                    <td><span class="rot">Grupo:</span></td>
+                    <td><label for="grupo" class="rot">Grupo:</label></td>
                     <td>
                         <select id="grupo" name="grupo" required class="t400">
                             <option></option>

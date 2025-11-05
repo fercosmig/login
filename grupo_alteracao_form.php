@@ -26,9 +26,9 @@ $grupo = $grupoDAO->registro_por_id($id_grupo);
             <div>
                 <table>
                     <tr>
-                        <td><span>Id:</span></td>
+                        <td><label for="id">Id:</label></td>
                         <td><input type="text" id="id" name="id" value="<?= $grupo->get_id(); ?>" readonly class="t25"></td>
-                        <td><span>Nome:</span></td>
+                        <td><label for="nome">Nome:</label></td>
                         <td><input type="text" id="nome" name="nome" value="<?= $grupo->get_nome(); ?>" required autofocus class="t400"></td>
                     </tr>
                 </table>
